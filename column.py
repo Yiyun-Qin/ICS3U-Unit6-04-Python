@@ -7,13 +7,14 @@
 import random
 
 
-def average_numbers(row_list):
+def average_numbers(row_list, row_integer, column_integer):
     # This function calculates the average of the numbers
     total = 0
     for a_row in row_list:
         for a_single_number in a_row:
             total = total + a_single_number
-    return total
+    average = total / (row_integer * column_integer)
+    return average
 
 
 def main():
@@ -34,14 +35,18 @@ def main():
             for loop_counter_column in range(0, column_integer):
                 a_single_number = random.randint(1, 50)
                 column_list.append(a_single_number)
-                print("{}".format(a_single_number), end=" ")
+                if a_single_number >= 10:
+                    print("{}".format(a_single_number), end=" ")
+                else:
+                    print("{}".format(a_single_number), end="  ")
             row_list.append(column_list)
             print("")
         # call functions
-        average = average_numbers(row_list)
-        print("\nThe average of all the numbers is {}.".format(average))
+        average = average_numbers(row_list, row_integer, column_integer)
+        print("\nThe average of all the numbers is {:,.2f}.".format(average))
     except Exception:
         print("Invalid number!")
+    finally:
         print("\nDone.")
 
 
